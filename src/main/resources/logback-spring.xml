@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+	
+	<property name="LOG_LEVEL" value="DEBUG" />
+	
+	<logger name="org.springframework" level="INFO" />
+	<logger name="org.mybatis" level="${LOG_LEVEL}"/>
+	<logger name="com.daims" level="${LOG_LEVEL}"/>
+	<logger name="jdbc" level="OFF"/>
+	<logger name="jdbc.sqlonly" level="OFF"/>
+	<logger name="jdbc.sqltiming" level="DEBUG"/>
+	<logger name="jdbc.audit" level="OFF"/>
+	<logger name="jdbc.resultset" level="OFF"/>
+	<logger name="jdbc.resultsettable" level="OFF"/>
+	<root level="INFO" additivity="false"> </root>
+		
+	
+	<!-- Mapper NameSpace 기준 -->
+	<logger name="memberMapper" level="${LOG_LEVEL}" />
+</configuration>
