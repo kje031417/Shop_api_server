@@ -2,13 +2,11 @@ package com.shop.api.service;
 
 import com.shop.api.dao.dto.Member;
 import com.shop.api.service.dto.MemberWithdrawDto;
-import com.shop.api.service.dto.MemberJoinDto;
 import com.shop.api.service.dto.MemberListDto;
-import com.shop.api.service.dto.MemberModifyDto;
+import com.shop.api.service.dto.MemberSaveDto;
 
 public interface MemberService {
-	Member joinMember(MemberJoinDto memberJoinDto);
-	Member modifyMember(MemberModifyDto memberModifyDto);
-	String withdrawMember(MemberWithdrawDto memberWithdrawDto);
+	Member saveMember(MemberSaveDto memberSaveDto);
 	Member selectMember(MemberListDto memberListDto);
+	String withdrawMember(MemberWithdrawDto memberWithdrawDto);
 }

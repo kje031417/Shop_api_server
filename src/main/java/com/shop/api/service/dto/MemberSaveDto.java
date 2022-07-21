@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class MemberModifyDto {
+public class MemberSaveDto {
 	private String mi_id;
 	private String mi_pw;
 	private String mi_name;
@@ -19,6 +19,8 @@ public class MemberModifyDto {
 	private String mi_detailaddress;
 	
 	public Member toEntity() {
-		return new Member(this.mi_id, this.mi_pw, this.mi_name, this.mi_email, this.mi_mobile, this.mi_tell, this.mi_postcode, this.mi_address, this.mi_detailaddress, this.mi_address);
+		return new Member(this.mi_id, this.mi_pw, this.mi_name, 
+				this.mi_email, this.mi_mobile, this.mi_tell, 
+				this.mi_postcode, this.mi_address, this.mi_detailaddress, this.mi_id);
 	}
 }

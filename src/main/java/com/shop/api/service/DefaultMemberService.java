@@ -6,9 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.shop.api.dao.MemberDAO;
 import com.shop.api.dao.dto.Member;
 import com.shop.api.service.dto.MemberWithdrawDto;
-import com.shop.api.service.dto.MemberJoinDto;
 import com.shop.api.service.dto.MemberListDto;
-import com.shop.api.service.dto.MemberModifyDto;
+import com.shop.api.service.dto.MemberSaveDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,28 +18,21 @@ public class DefaultMemberService implements MemberService {
 
 	private final MemberDAO memberDAO;
 	
+	public Member saveMember(MemberSaveDto memberSaveDto) {
+		memberDAO.saveMember(memberSaveDto.toEntity());
+		MemberListDto memberListDto = new MemberListDto(memberSaveDto.getMi_id());
+		
+		return memberDAO.selectMember(memberListDto.toEntity());
+	};
+
 	@Override
-	public Member joinMember(MemberJoinDto memberJoinDto) {
-		Member member = memberJoinDto.toEntity();
-		memberDAO.joinMember(member);
-		return member;
-	}
-	
-	@Override
-	public Member modifyMember(MemberModifyDto memberModifyDto) {
-		Member member = memberModifyDto.toEntity();
-		memberDAO.modifyMember(member);
-		return member;
+	public Member selectMember(MemberListDto memberListDto) {
+		return memberDAO.selectMember(memberListDto.toEntity());
 	}
 	
 	@Override
 	public String withdrawMember(MemberWithdrawDto memberWithdrawDto) {
 		memberDAO.withdrawMember(memberWithdrawDto.toEntity());
 		return "삭제 성공";
-	}
-	
-	@Override
-	public Member selectMember(MemberListDto memberListDto) {
-		return memberDAO.selectMember(memberListDto.toEntity());
 	}
 }

@@ -17,24 +17,19 @@ import lombok.RequiredArgsConstructor;
 public class DefaultMemberDAO implements MemberDAO {
 	
 	private final SqlSession sqlSession;
-	
+
 	@Override
-	public int joinMember(Member member) {
-		return sqlSession.getMapper(MemberMapper.class).joinMember(member);
+	public int saveMember(Member member) {
+		return sqlSession.getMapper(MemberMapper.class).saveMember(member);
 	}
-	
+
 	@Override
-	public int modifyMember(Member member) {
-		return sqlSession.getMapper(MemberMapper.class).modifyMember(member);
+	public Member selectMember(MemberId memberId) {
+		return sqlSession.getMapper(MemberMapper.class).selectMember(memberId);
 	}
 	
 	@Override
 	public int withdrawMember(MemberId memberId) {
 		return sqlSession.getMapper(MemberMapper.class).withdrawMember(memberId);
-	}
-	
-	@Override
-	public Member selectMember(MemberId memberId) {
-		return sqlSession.getMapper(MemberMapper.class).selectMember(memberId);
 	}
 }
