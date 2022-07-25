@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.api.mapper.NoticeMapper">
+	
+	<insert id="saveNotice" parameterType="com.shop.api.dao.dto.Notice" useGeneratedKeys="true" keyColumn="nb_num" keyProperty="nb_num">
+		with upsert as (
+			update notice_board 
+			<set>
+				<if test="nb_subject != null and nb_subject != ''">
+					nb_subject = #{nb_subject},
+				</if>
+				<if test="nb_content != null and nb_content != ''">
+					nb_content = #{nb_content}
+				</if>
+			</set>
+			where nb_num = #{nb_num}
+			returning *
+		)
+		insert into notice_board (
+			nb_num,
+			nb_id,
+			nb_subject, 
+			nb_content 
+		)
+		select
+			nextval('nb_seq'),
+			#{nb_id},
+			#{nb_subject},
+			#{nb_content}
+		where not exists (select * from upsert)
+	</insert>
+	
+	<select id="selectNotice" parameterType="com.shop.api.dao.dto.NoticeNum" resultType="com.shop.api.dao.dto.Notice">
+		select
+		nb_num,
+		nb_id,
+		nb_subject,
+		nb_content,
+		TO_CHAR(TO_TIMESTAMP(nb_createdat, 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD HH24:MI:SS') "nb_createdat"
+		from notice_board
+		where nb_num=#{nb_num}
+	</select>
+	
+	<delete id="deleteNotice" parameterType="com.shop.api.dao.dto.NoticeNum">
+		delete from notice_board
+		where nb_num = #{nb_num}
+	</delete>
+</mapper>

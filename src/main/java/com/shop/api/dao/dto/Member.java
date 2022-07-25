@@ -32,4 +32,5 @@ public class Member {
 		this.mi_detailaddress = mi_detailaddress;
 		this.mi_createdat = mi_createdat;
 	}
+	
 }

@@ -32,7 +32,12 @@ public class DefaultMemberService implements MemberService {
 	
 	@Override
 	public String withdrawMember(MemberWithdrawDto memberWithdrawDto) {
-		memberDAO.withdrawMember(memberWithdrawDto.toEntity());
-		return "삭제 성공";
+		int result = memberDAO.withdrawMember(memberWithdrawDto.toEntity());
+		
+		if(result > 0) {
+			return "삭제 성공";
+		} else {
+			return "삭제 실패";
+		}
 	}
 }
