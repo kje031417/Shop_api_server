@@ -24,4 +24,19 @@ public class Attach {
 		this.saved_file_name = saved_file_name;
 		this.file_size = file_size;
 	}
+	
+	public Attach(String board_type, int board_id, String file_name, String saved_file_name,
+			long file_size) {
+		super();
+		this.board_type = board_type;
+		this.board_id = board_id;
+		this.file_name = file_name;
+		this.saved_file_name = saved_file_name;
+		this.file_size = file_size;
+	}
+	
+	public static final Attach create(String board_type, int board_id, 
+			String file_name, String saved_file_name, long file_size) {
+		return new Attach(board_type, board_id, file_name, saved_file_name, file_size);
+	}
 }

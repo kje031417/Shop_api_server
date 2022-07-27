@@ -1,5 +1,6 @@
 package com.shop.api.controller.dto;
 
+import com.shop.api.dao.dto.Attach;
 import com.shop.api.dao.dto.Notice;
 import com.shop.api.service.dto.NoticeSaveDto;
 
@@ -39,10 +40,18 @@ public class NoticeAssignDto {
 		private String nb_subject;
 		private String nb_content;
 		private String nb_createdat;
+		private String board_type;
+		private int board_id;
+		private int file_num;
+		private String file_name;
+		private String saved_file_name;
+		private long file_size;
 		
-		public static NoticeAssignData create(Notice notice) {
+		public static NoticeAssignData create(Notice notice, Attach attach) {
 			return new NoticeAssignData(notice.getNb_num(), notice.getNb_id(), 
-					notice.getNb_subject(), notice.getNb_content(), notice.getNb_createdat());
+					notice.getNb_subject(), notice.getNb_content(), notice.getNb_createdat(),
+					attach.getBoard_type(), attach.getBoard_id(), attach.getFile_num(),
+					attach.getFile_name(), attach.getSaved_file_name(), attach.getFile_size());
 		}
 	}
 }

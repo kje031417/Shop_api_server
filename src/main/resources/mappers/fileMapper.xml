@@ -18,5 +18,23 @@
 			#{file_size}
 		)
 	</insert>
-
+	
+	<select id="selectFile" parameterType="com.shop.api.dao.dto.NoticeNum" resultType="com.shop.api.dao.dto.Attach">
+		select * from board_attach
+		where board_id = #{nb_num}
+	</select>
+	
+	<update id="editFile" parameterType="com.shop.api.dao.dto.Attach">
+		update board_attach
+		set 
+		file_name=#{file_name}, 
+		saved_file_name=#{saved_file_name}, 
+		file_size=#{file_size}
+		where board_id=#{board_id} and board_type=#{board_type}
+	</update>
+	
+	<delete id="deleteFile" parameterType="com.shop.api.dao.dto.NoticeNum">
+		delete from board_attach
+		where board_id = #{nb_num}
+	</delete>
 </mapper>

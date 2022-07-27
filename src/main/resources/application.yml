@@ -9,11 +9,8 @@ spring :
       minimum-idle: 1
   servlet:
     multipart:
-      location: /resources/file
       max-file-size: 200MB
       max-request-size: 200MB
-      
+
 mybatis:
   mapper-locations: classpath:mappers/*.xml
-
-

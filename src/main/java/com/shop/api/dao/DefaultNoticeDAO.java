@@ -18,7 +18,7 @@ public class DefaultNoticeDAO implements NoticeDAO {
 	private final SqlSession sqlSession;
 	
 	@Override
-	public int saveNoticE(Notice notice) {
+	public int saveNotice(Notice notice) {
 		return sqlSession.getMapper(NoticeMapper.class).saveNotice(notice);
 	}
 
